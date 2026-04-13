@@ -1,0 +1,11 @@
+C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\GameCatalogSystem.Domain\bin\Debug\net8.0\GameCatalogSystem.Domain.deps.json
+C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\GameCatalogSystem.Domain\bin\Debug\net8.0\GameCatalogSystem.Domain.dll
+C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\GameCatalogSystem.Domain\bin\Debug\net8.0\GameCatalogSystem.Domain.pdb
+C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\GameCatalogSystem.Domain\obj\Debug\net8.0\GameCatalogSystem.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\GameCatalogSystem.Domain\obj\Debug\net8.0\GameCatalogSystem.Domain.AssemblyInfoInputs.cache
+C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\GameCatalogSystem.Domain\obj\Debug\net8.0\GameCatalogSystem.Domain.AssemblyInfo.cs
+C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\GameCatalogSystem.Domain\obj\Debug\net8.0\GameCatalogSystem.Domain.csproj.CoreCompileInputs.cache
+C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\GameCatalogSystem.Domain\obj\Debug\net8.0\GameCatalogSystem.Domain.dll
+C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\GameCatalogSystem.Domain\obj\Debug\net8.0\refint\GameCatalogSystem.Domain.dll
+C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\GameCatalogSystem.Domain\obj\Debug\net8.0\GameCatalogSystem.Domain.pdb
+C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\GameCatalogSystem.Domain\obj\Debug\net8.0\ref\GameCatalogSystem.Domain.dll

@@ -1,0 +1,15 @@
+C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\GameCatalogSystem.Application\bin\Debug\net8.0\GameCatalogSystem.Application.deps.json
+C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\GameCatalogSystem.Application\bin\Debug\net8.0\GameCatalogSystem.Application.dll
+C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\GameCatalogSystem.Application\bin\Debug\net8.0\GameCatalogSystem.Application.pdb
+C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\GameCatalogSystem.Application\bin\Debug\net8.0\GameCatalogSystem.Domain.dll
+C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\GameCatalogSystem.Application\bin\Debug\net8.0\GameCatalogSystem.Domain.pdb
+C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\GameCatalogSystem.Application\obj\Debug\net8.0\GameCatalogSystem.Application.csproj.AssemblyReference.cache
+C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\GameCatalogSystem.Application\obj\Debug\net8.0\GameCatalogSystem.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\GameCatalogSystem.Application\obj\Debug\net8.0\GameCatalogSystem.Application.AssemblyInfoInputs.cache
+C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\GameCatalogSystem.Application\obj\Debug\net8.0\GameCatalogSystem.Application.AssemblyInfo.cs
+C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\GameCatalogSystem.Application\obj\Debug\net8.0\GameCatalogSystem.Application.csproj.CoreCompileInputs.cache
+C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\GameCatalogSystem.Application\obj\Debug\net8.0\GameCata.1EECCBAE.Up2Date
+C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\GameCatalogSystem.Application\obj\Debug\net8.0\GameCatalogSystem.Application.dll
+C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\GameCatalogSystem.Application\obj\Debug\net8.0\refint\GameCatalogSystem.Application.dll
+C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\GameCatalogSystem.Application\obj\Debug\net8.0\GameCatalogSystem.Application.pdb
+C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\GameCatalogSystem.Application\obj\Debug\net8.0\ref\GameCatalogSystem.Application.dll
