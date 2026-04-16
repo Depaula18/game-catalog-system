@@ -17,16 +17,16 @@ Thumbs.db
 *.userosscache
 *.sln.docstates
 
-# Visual Studio cache
-.vs/
+# Visual Studio cache (Correção aplicada aqui)
+**/.vs/
 
 # =========================
-# .NET / C#
+# .NET / C# (Correção aplicada aqui)
 # =========================
-[Bb]in/
-[Oo]bj/
-[Ll]og/
-[Ll]ogs/
+**/[Bb]in/
+**/[Oo]bj/
+**/[Ll]og/
+**/[Ll]ogs/
 TestResults/
 *.nupkg
 *.snupkg
@@ -83,7 +83,7 @@ coverage/
 *~
 
 # =========================
-# Banco local / arquivos de dados (opcional)
+# Banco local / arquivos de dados
 # =========================
 *.db
 *.sqlite

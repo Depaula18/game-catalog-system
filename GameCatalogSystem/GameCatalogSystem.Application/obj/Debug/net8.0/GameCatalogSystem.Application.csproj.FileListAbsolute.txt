@@ -13,3 +13,4 @@ C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\GameCat
 C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\GameCatalogSystem.Application\obj\Debug\net8.0\refint\GameCatalogSystem.Application.dll
 C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\GameCatalogSystem.Application\obj\Debug\net8.0\GameCatalogSystem.Application.pdb
 C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\GameCatalogSystem.Application\obj\Debug\net8.0\ref\GameCatalogSystem.Application.dll
+C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\GameCatalogSystem.Application\obj\Debug\net8.0\GameCatalogSystem.Application.sourcelink.json
