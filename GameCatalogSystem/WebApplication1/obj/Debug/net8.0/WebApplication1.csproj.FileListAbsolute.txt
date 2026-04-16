@@ -150,3 +150,4 @@ C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\WebAppl
 C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\WebApplication1\obj\Debug\net8.0\WebApplication1.pdb
 C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\WebApplication1\obj\Debug\net8.0\WebApplication1.genruntimeconfig.cache
 C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\WebApplication1\obj\Debug\net8.0\ref\WebApplication1.dll
+C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\WebApplication1\obj\Debug\net8.0\WebApplication1.sourcelink.json
