@@ -13,11 +13,15 @@ namespace WebApplication1
 
             builder.Services.AddScoped<GameCatalogSystem.Domain.Repositories.IGenreRepository, GameCatalogSystem.Infrastructure.Repositories.GenreRepository>();
             builder.Services.AddScoped<GameCatalogSystem.Application.Services.Interfaces.IGenreService, GameCatalogSystem.Application.Services.GenreService>();
+            builder.Services.AddScoped<GameCatalogSystem.Domain.Repositories.IGameRepository, GameCatalogSystem.Infrastructure.Repositories.GameRepository>();
+            builder.Services.AddScoped<GameCatalogSystem.Application.Services.Interfaces.IGameService, GameCatalogSystem.Application.Services.GameService>();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddCors();
 
             var app = builder.Build();
 
@@ -29,6 +33,11 @@ namespace WebApplication1
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors(options => options
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader());
 
             app.UseAuthorization();
 
