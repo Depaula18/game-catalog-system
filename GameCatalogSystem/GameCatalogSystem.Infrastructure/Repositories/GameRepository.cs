@@ -18,9 +18,24 @@ public class GameRepository : IGameRepository
         _context = context;
     }
 
-    public async Task<IEnumerable<Game>> GetAllAsync()
+    public async Task<(IEnumerable<Game> Games, int TotalCount)> GetAllPaginatedAsync(int page, int pageSize, string? searchTerm)
     {
-        return await _context.Games.Include(g => g.Genre).ToListAsync();
+        var query = _context.Games.Include(g => g.Genre).AsQueryable();
+
+        if (!string.IsNullOrWhiteSpace(searchTerm))
+        {
+            query = query.Where(g => g.Title.Contains(searchTerm) || g.Description.Contains(searchTerm));
+        }
+
+        int totalCount = await query.CountAsync();
+
+        var games = await query
+            .OrderBy(g => g.Title) 
+            .Skip((page - 1) * pageSize) 
+            .Take(pageSize) 
+            .ToListAsync(); 
+
+        return (games, totalCount);
     }
 
     public async Task<Game?> GetByIdAsync(Guid id)

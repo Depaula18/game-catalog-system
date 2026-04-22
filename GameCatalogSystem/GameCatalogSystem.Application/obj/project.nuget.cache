@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "LICSFUuS6y8=",
+  "dgSpecHash": "7sz9tM/QUVw=",
   "success": true,
   "projectFilePath": "C:\\Users\\depau\\Desktop\\Escritorio\\bagui_do_trampo\\crud\\GameCatalogSystem\\GameCatalogSystem.Application\\GameCatalogSystem.Application.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\depau\\.nuget\\packages\\fluentvalidation\\12.1.1\\fluentvalidation.12.1.1.nupkg.sha512",
+    "C:\\Users\\depau\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\12.1.1\\fluentvalidation.dependencyinjectionextensions.12.1.1.nupkg.sha512",
+    "C:\\Users\\depau\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\2.1.0\\microsoft.extensions.dependencyinjection.abstractions.2.1.0.nupkg.sha512"
+  ],
   "logs": []
 }

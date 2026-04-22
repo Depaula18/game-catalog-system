@@ -15,3 +15,4 @@ C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\GameCat
 C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\GameCatalogSystem.Infrastructure\obj\Debug\net8.0\ref\GameCatalogSystem.Infrastructure.dll
 C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\GameCatalogSystem.Infrastructure\bin\Debug\net8.0\GameCatalogSystem.Infrastructure.runtimeconfig.json
 C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\GameCatalogSystem.Infrastructure\obj\Debug\net8.0\GameCatalogSystem.Infrastructure.genruntimeconfig.cache
+C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\GameCatalogSystem.Infrastructure\obj\Debug\net8.0\GameCatalogSystem.Infrastructure.sourcelink.json
