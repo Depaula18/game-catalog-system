@@ -3,11 +3,23 @@ import { GameList } from './components/GameList';
 import { GameModal } from './components/GameModal';
 
 function App() {
-
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [refreshList, setRefreshList] = useState(0);
   
 
-  const [refreshList, setRefreshList] = useState(0);
+  const [gameToEdit, setGameToEdit] = useState<any>(null);
+
+
+  const handleOpenCreateModal = () => {
+    setGameToEdit(null);
+    setIsModalOpen(true);
+  };
+
+
+  const handleOpenEditModal = (game: any) => {
+    setGameToEdit(game);
+    setIsModalOpen(true);
+  };
 
   return (
     <div className="min-h-screen bg-gray-900 text-gray-100 font-sans">
@@ -20,9 +32,8 @@ function App() {
             </h1>
           </div>
           
-
           <button 
-            onClick={() => setIsModalOpen(true)}
+            onClick={handleOpenCreateModal} 
             className="bg-emerald-600 hover:bg-emerald-500 text-white px-5 py-2 rounded-lg font-semibold transition-colors shadow-lg shadow-emerald-600/30"
           >
             + Novo Jogo
@@ -37,14 +48,14 @@ function App() {
         </div>
 
 
-        <GameList refreshTrigger={refreshList} />
+        <GameList refreshTrigger={refreshList} onEdit={handleOpenEditModal} />
       </main>
-
 
       <GameModal 
         isOpen={isModalOpen} 
         onClose={() => setIsModalOpen(false)} 
-        onSuccess={() => setRefreshList(refreshList + 1)} 
+        onSuccess={() => setRefreshList(refreshList + 1)}
+        gameToEdit={gameToEdit} 
       />
     </div>
   );

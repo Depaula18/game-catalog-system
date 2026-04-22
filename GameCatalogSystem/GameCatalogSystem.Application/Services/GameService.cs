@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using GameCatalogSystem.Application.DTOs;
 using GameCatalogSystem.Application.DTOs.Game;
 using GameCatalogSystem.Application.Services.Interfaces;
 using GameCatalogSystem.Domain.Entities;
 using GameCatalogSystem.Domain.Repositories;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace GameCatalogSystem.Application.Services;
 
@@ -21,10 +22,11 @@ public class GameService : IGameService
         _genreRepository = genreRepository;
     }
 
-    public async Task<IEnumerable<GameResponseDTO>> GetAllAsync()
+    public async Task<PagedResponseDTO<GameResponseDTO>> GetAllPaginatedAsync(int page, int pageSize, string? searchTerm)
     {
-        var games = await _gameRepository.GetAllAsync();
-        return games.Select(g => new GameResponseDTO
+        var (games, totalCount) = await _gameRepository.GetAllPaginatedAsync(page, pageSize, searchTerm);
+
+        var gamesDto = games.Select(g => new GameResponseDTO
         {
             Id = g.Id,
             Title = g.Title,
@@ -33,6 +35,8 @@ public class GameService : IGameService
             ReleaseDate = g.ReleaseDate,
             GenreName = g.Genre != null ? g.Genre.Name : "Gênero não encontrado"
         });
+
+        return new PagedResponseDTO<GameResponseDTO>(gamesDto, totalCount, page, pageSize);
     }
 
     public async Task<GameResponseDTO?> GetByIdAsync(Guid id)
@@ -83,5 +87,33 @@ public class GameService : IGameService
         _gameRepository.Delete(game);
         await _gameRepository.SaveChangesAsync();
         return true;
+    }
+
+    public async Task<GameResponseDTO?> UpdateAsync(Guid id, UpdateGameRequestDTO dto)
+    {
+
+        var game = await _gameRepository.GetByIdAsync(id);
+        if (game == null) return null;
+
+
+        var genre = await _genreRepository.GetByIdAsync(dto.GenreId);
+        if (genre == null) throw new Exception("Gênero inválido.");
+
+
+        game.Update(dto.Title, dto.Description, dto.Price, dto.ReleaseDate, dto.GenreId);
+
+
+        _gameRepository.Update(game);
+        await _gameRepository.SaveChangesAsync();
+
+        return new GameResponseDTO
+        {
+            Id = game.Id,
+            Title = game.Title,
+            Description = game.Description,
+            Price = game.Price,
+            ReleaseDate = game.ReleaseDate,
+            GenreName = genre.Name
+        };
     }
 }

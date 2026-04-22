@@ -9,3 +9,4 @@ C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\GameCat
 C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\GameCatalogSystem.Domain\obj\Debug\net8.0\refint\GameCatalogSystem.Domain.dll
 C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\GameCatalogSystem.Domain\obj\Debug\net8.0\GameCatalogSystem.Domain.pdb
 C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\GameCatalogSystem.Domain\obj\Debug\net8.0\ref\GameCatalogSystem.Domain.dll
+C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\GameCatalogSystem.Domain\obj\Debug\net8.0\GameCatalogSystem.Domain.sourcelink.json

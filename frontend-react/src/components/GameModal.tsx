@@ -8,11 +8,13 @@ interface Genre {
 
 interface GameModalProps {
   isOpen: boolean;
-  onClose: () => void
+  onClose: () => void;
   onSuccess: () => void;
+  gameToEdit?: unknown;
 }
 
-export function GameModal({ isOpen, onClose, onSuccess }: GameModalProps) {
+export function GameModal(props: GameModalProps) {
+  const { isOpen, onClose, onSuccess } = props;
   const [genres, setGenres] = useState<Genre[]>([]);
   
   const [formData, setFormData] = useState({
