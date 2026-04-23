@@ -14,4 +14,5 @@ public class GameResponseDTO
     public DateTime ReleaseDate { get; set; }
 
     public string GenreName { get; set; } = string.Empty;
+    public string? CoverUrl { get; set; }
 }

@@ -16,7 +16,7 @@ namespace GameCatalogSystem.Domain.Entities
         public Guid GenreId { get; private set; }
 
         public Genre? Genre { get; private set; }
-
+        public string? CoverUrl { get; private set; }
         protected Game() { }
 
         public Game(string title, string description, decimal price, DateTime releaseDate, Guid genreId)
@@ -37,6 +37,9 @@ namespace GameCatalogSystem.Domain.Entities
             GenreId = genreId;
         }
 
-
+        public void UpdateCoverUrl(string url)
+        {
+            CoverUrl = url;
+        }
     }
 }

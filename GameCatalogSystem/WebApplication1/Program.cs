@@ -18,6 +18,7 @@ namespace WebApplication1
             builder.Services.AddScoped<GameCatalogSystem.Domain.Repositories.IGameRepository, GameCatalogSystem.Infrastructure.Repositories.GameRepository>();
             builder.Services.AddScoped<GameCatalogSystem.Application.Services.Interfaces.IGameService, GameCatalogSystem.Application.Services.GameService>();
             builder.Services.AddValidatorsFromAssemblyContaining<GameCatalogSystem.Application.Validators.CreateGameValidator>();
+            builder.Services.AddScoped<GameCatalogSystem.Application.Services.Interfaces.IAuditService, GameCatalogSystem.Infrastructure.Services.MongoAuditService>();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -71,6 +72,8 @@ namespace WebApplication1
             app.UseMiddleware<GameCatalogSystem.Middlewares.GlobalExceptionMiddleware>();
 
             app.UseHttpsRedirection();
+
+            app.UseStaticFiles();
 
             app.UseCors(options => options
             .AllowAnyOrigin()

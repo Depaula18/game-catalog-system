@@ -3,13 +3,14 @@ import { api } from '../services/api';
 import { Trash2, Pencil, Search, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface Game {
-  id: string;
-  title: string;
-  description: string;
-  price: number;
-  releaseDate: string;
-  genreName: string;
-}
+    id: string;
+    title: string;
+    description: string;
+    price: number;
+    releaseDate: string;
+    genreName: string;
+    coverUrl?: string; 
+  }
 
 
 interface PagedResponse {
@@ -70,7 +71,26 @@ export function GameList({ refreshTrigger, onEdit }: { refreshTrigger: number, o
       alert("Erro ao excluir.");
     }
   };
+  
+  const handleUploadCover = async (id: string, file: File) => {
+    if (!file) return;
 
+    const formData = new FormData();
+    formData.append('file', file); 
+
+    try {
+
+      await api.post(`/Games/${id}/cover`, formData, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      });
+      
+      fetchGames(); 
+      alert("Capa atualizada com sucesso!");
+    } catch (error) {
+      console.error("Erro no upload:", error);
+      alert("Não foi possível enviar a imagem.");
+    }
+  };
   const toggleDescription = (id: string) => {
     setExpandedIds(prev => prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]);
   };
@@ -100,38 +120,68 @@ export function GameList({ refreshTrigger, onEdit }: { refreshTrigger: number, o
             ) : (
               gameData?.data.map((game) => {
                 const isExpanded = expandedIds.includes(game.id);
+                const imageUrl = game.coverUrl ? `https://localhost:7277${game.coverUrl}` : null;
+
                 return (
-                  <div key={game.id} className="flex flex-col bg-gray-800 rounded-xl p-6 border border-gray-700 shadow-lg hover:border-emerald-500 transition-colors duration-300">
-                    <div className="flex justify-between items-start mb-4">
-                      <h3 className="text-xl font-bold text-white truncate pr-2" title={game.title}>{game.title}</h3>
-                      <span className="shrink-0 bg-emerald-500/10 text-emerald-400 text-xs px-2 py-1 rounded-full border border-emerald-500/20">
-                        {game.genreName}
-                      </span>
-                    </div>
-                    
-                    <div onClick={() => toggleDescription(game.id)} className="cursor-pointer group mb-6 flex-1">
-                      <p className={`text-gray-400 text-sm transition-all ${isExpanded ? '' : 'line-clamp-2'}`}>
-                        {game.description}
-                      </p>
-                    </div>
-                    
-                    <div className="flex justify-between items-end pt-4 border-t border-gray-700/50">
-                      <div className="flex flex-col">
-                        <span className="text-lg font-bold text-emerald-400">
-                          {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(game.price)}
+                  <div key={game.id} className="flex flex-col bg-gray-800 rounded-xl border border-gray-700 shadow-lg hover:border-emerald-500 transition-colors duration-300 overflow-hidden">
+                    <div className="relative h-48 w-full bg-gray-900 group">
+                      {imageUrl ? (
+                        <img src={imageUrl} alt={game.title} className="w-full h-full object-cover opacity-80 group-hover:opacity-40 transition-opacity duration-300" />
+                      ) : (
+                        <div className="flex items-center justify-center w-full h-full text-gray-600 font-medium">
+                          Sem Capa
+                        </div>
+                      )}
+
+                      <label className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer">
+                        <span className="bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-bold py-2 px-4 rounded-lg shadow-lg">
+                          {imageUrl ? 'Trocar Capa' : 'Adicionar Capa'}
                         </span>
-                        <span className="text-[10px] text-gray-500">
-                          {new Date(game.releaseDate).toLocaleDateString('pt-BR', { timeZone: 'UTC' })}
+                        <input
+                          type="file"
+                          className="hidden"
+                          accept="image/png, image/jpeg, image/webp"
+                          onChange={(e) => {
+                            if (e.target.files && e.target.files[0]) {
+                              handleUploadCover(game.id, e.target.files[0]);
+                            }
+                          }}
+                        />
+                      </label>
+                    </div>
+
+                    <div className="p-6 flex flex-col flex-1">
+                      <div className="flex justify-between items-start mb-4">
+                        <h3 className="text-xl font-bold text-white truncate pr-2" title={game.title}>{game.title}</h3>
+                        <span className="shrink-0 bg-emerald-500/10 text-emerald-400 text-xs px-2 py-1 rounded-full border border-emerald-500/20">
+                          {game.genreName}
                         </span>
                       </div>
 
-                      <div className="flex gap-1">
-                        <button onClick={() => onEdit(game)} className="p-2 text-gray-500 hover:text-emerald-500 hover:bg-emerald-500/10 rounded-lg transition-colors">
-                          <Pencil size={18} />
-                        </button>
-                        <button onClick={() => handleDelete(game.id)} className="p-2 text-gray-500 hover:text-red-500 hover:bg-red-500/10 rounded-lg transition-colors">
-                          <Trash2 size={18} />
-                        </button>
+                      <div onClick={() => toggleDescription(game.id)} className="cursor-pointer group mb-6 flex-1">
+                        <p className={`text-gray-400 text-sm transition-all ${isExpanded ? '' : 'line-clamp-2'}`}>
+                          {game.description}
+                        </p>
+                      </div>
+
+                      <div className="flex justify-between items-end pt-4 border-t border-gray-700/50">
+                        <div className="flex flex-col">
+                          <span className="text-lg font-bold text-emerald-400">
+                            {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(game.price)}
+                          </span>
+                          <span className="text-[10px] text-gray-500">
+                            {new Date(game.releaseDate).toLocaleDateString('pt-BR', { timeZone: 'UTC' })}
+                          </span>
+                        </div>
+
+                        <div className="flex gap-1">
+                          <button onClick={() => onEdit(game)} className="p-2 text-gray-500 hover:text-emerald-500 hover:bg-emerald-500/10 rounded-lg transition-colors">
+                            <Pencil size={18} />
+                          </button>
+                          <button onClick={() => handleDelete(game.id)} className="p-2 text-gray-500 hover:text-red-500 hover:bg-red-500/10 rounded-lg transition-colors">
+                            <Trash2 size={18} />
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>

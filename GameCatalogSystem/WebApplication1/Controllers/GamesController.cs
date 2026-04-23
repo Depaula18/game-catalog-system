@@ -14,14 +14,17 @@ public class GamesController : ControllerBase
     private readonly IGameService _gameService;
     private readonly IValidator<CreateGameRequestDTO> _createValidator;
     private readonly IValidator<UpdateGameRequestDTO> _updateValidator;
+    private readonly IWebHostEnvironment _environment;
     public GamesController(
             IGameService gameService,
             IValidator<CreateGameRequestDTO> createValidator,
-            IValidator<UpdateGameRequestDTO> updateValidator) 
+            IValidator<UpdateGameRequestDTO> updateValidator,
+            IWebHostEnvironment environment) 
     {
         _gameService = gameService;
         _createValidator = createValidator;
-        _updateValidator = updateValidator; 
+        _updateValidator = updateValidator;
+        _environment = environment; 
     }
 
     [HttpGet]
@@ -81,4 +84,36 @@ public class GamesController : ControllerBase
 
         return Ok(game);
     }
+
+    [HttpPost("{id:guid}/cover")]
+    public async Task<IActionResult> UploadCover(Guid id, IFormFile file)
+    {
+        if (file == null || file.Length == 0)
+            return BadRequest("Nenhum arquivo enviado.");
+
+        var extension = Path.GetExtension(file.FileName).ToLower();
+        if (extension != ".jpg" && extension != ".jpeg" && extension != ".png" && extension != ".webp")
+            return BadRequest("Formato inválido. Envie apenas imagens (JPG, PNG, WEBP).");
+
+        var uploadsFolder = Path.Combine(_environment.WebRootPath, "uploads");
+
+        if (!Directory.Exists(uploadsFolder))
+            Directory.CreateDirectory(uploadsFolder);
+
+        var uniqueFileName = $"{Guid.NewGuid()}{extension}";
+        var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+        using (var stream = new FileStream(filePath, FileMode.Create))
+        {
+            await file.CopyToAsync(stream);
+        }
+
+        var coverUrl = $"/uploads/{uniqueFileName}";
+
+        var result = await _gameService.UpdateCoverUrlAsync(id, coverUrl);
+        if (!result) return NotFound("Jogo não encontrado.");
+
+        return Ok(new { CoverUrl = coverUrl });
+    }
+
 }

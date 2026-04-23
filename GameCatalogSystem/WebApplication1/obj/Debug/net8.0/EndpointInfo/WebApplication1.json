@@ -225,6 +225,49 @@
         }
       }
     },
+    "/api/Games/{id}/cover": {
+      "post": {
+        "tags": [
+          "Games"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "file": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Genres": {
       "get": {
         "tags": [
@@ -416,6 +459,10 @@
             "format": "date-time"
           },
           "genreName": {
+            "type": "string",
+            "nullable": true
+          },
+          "coverUrl": {
             "type": "string",
             "nullable": true
           }
