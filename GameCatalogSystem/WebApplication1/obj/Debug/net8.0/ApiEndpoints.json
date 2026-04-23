@@ -135,6 +135,27 @@
     ]
   },
   {
+    "ContainingType": "GameCatalogSystem.Controllers.GamesController",
+    "Method": "UploadCover",
+    "RelativePath": "api/Games/{id}/cover",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "file",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "GameCatalogSystem.Controllers.GenresController",
     "Method": "GetAll",
     "RelativePath": "api/Genres",

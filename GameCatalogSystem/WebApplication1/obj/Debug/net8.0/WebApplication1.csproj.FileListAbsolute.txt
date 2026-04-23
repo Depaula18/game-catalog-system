@@ -153,3 +153,10 @@ C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\WebAppl
 C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\WebApplication1\obj\Debug\net8.0\WebApplication1.sourcelink.json
 C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\WebApplication1\bin\Debug\net8.0\FluentValidation.dll
 C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\WebApplication1\bin\Debug\net8.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\WebApplication1\bin\Debug\net8.0\DnsClient.dll
+C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\WebApplication1\bin\Debug\net8.0\MongoDB.Bson.dll
+C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\WebApplication1\bin\Debug\net8.0\MongoDB.Driver.dll
+C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\WebApplication1\bin\Debug\net8.0\SharpCompress.dll
+C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\WebApplication1\bin\Debug\net8.0\Snappier.dll
+C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\WebApplication1\bin\Debug\net8.0\ZstdSharp.dll
+C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\WebApplication1\bin\Debug\net8.0\WebApplication1.staticwebassets.runtime.json

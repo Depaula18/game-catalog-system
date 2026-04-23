@@ -15,4 +15,5 @@ public interface IGameService
     Task<GameResponseDTO> CreateAsync(CreateGameRequestDTO dto);
     Task<bool> DeleteAsync(Guid id);
     Task<GameResponseDTO?> UpdateAsync(Guid id, UpdateGameRequestDTO dto);
+    Task<bool> UpdateCoverUrlAsync(Guid id, string coverUrl);
 }

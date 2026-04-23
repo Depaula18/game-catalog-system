@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.Json;
 
 namespace GameCatalogSystem.Application.Services;
 
@@ -15,11 +16,13 @@ public class GameService : IGameService
 {
     private readonly IGameRepository _gameRepository;
     private readonly IGenreRepository _genreRepository;
+    private readonly IAuditService _auditService;
 
-    public GameService(IGameRepository gameRepository, IGenreRepository genreRepository)
+    public GameService(IGameRepository gameRepository, IGenreRepository genreRepository, IAuditService auditService)
     {
         _gameRepository = gameRepository;
         _genreRepository = genreRepository;
+        _auditService = auditService; // NOVO
     }
 
     public async Task<PagedResponseDTO<GameResponseDTO>> GetAllPaginatedAsync(int page, int pageSize, string? searchTerm)
@@ -33,7 +36,8 @@ public class GameService : IGameService
             Description = g.Description,
             Price = g.Price,
             ReleaseDate = g.ReleaseDate,
-            GenreName = g.Genre != null ? g.Genre.Name : "Gênero não encontrado"
+            GenreName = g.Genre != null ? g.Genre.Name : "Gênero não encontrado",
+            CoverUrl = g.CoverUrl
         });
 
         return new PagedResponseDTO<GameResponseDTO>(gamesDto, totalCount, page, pageSize);
@@ -67,6 +71,9 @@ public class GameService : IGameService
 
         await _gameRepository.AddAsync(game);
         await _gameRepository.SaveChangesAsync();
+
+        var detailsJson = JsonSerializer.Serialize(dto);
+        await _auditService.LogAsync("Create", "Game", game.Id.ToString(), detailsJson);
 
         return new GameResponseDTO
         {
@@ -115,5 +122,18 @@ public class GameService : IGameService
             ReleaseDate = game.ReleaseDate,
             GenreName = genre.Name
         };
+    }
+
+    public async Task<bool> UpdateCoverUrlAsync(Guid id, string coverUrl)
+    {
+        var game = await _gameRepository.GetByIdAsync(id);
+        if (game == null) return false;
+
+        game.UpdateCoverUrl(coverUrl);
+
+        _gameRepository.Update(game);
+        await _gameRepository.SaveChangesAsync();
+
+        return true;
     }
 }
