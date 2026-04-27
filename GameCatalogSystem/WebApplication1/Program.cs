@@ -18,21 +18,25 @@ namespace WebApplication1
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            var sqlConnectionString = Environment.GetEnvironmentVariable("DATABASE_URL")
-                                     ?? builder.Configuration.GetConnectionString("DefaultConnection");
+            // 1. Separa as variáveis para não dar confusão
+            var envDbUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
+            var localDbUrl = builder.Configuration.GetConnectionString("DefaultConnection");
 
-            var mongoConnectionString = Environment.GetEnvironmentVariable("MONGODB_URI")
-                                       ?? builder.Configuration.GetSection("MongoDbSettings:ConnectionString").Value;
+            var envMongoUrl = Environment.GetEnvironmentVariable("MONGODB_URI");
+            var localMongoUrl = builder.Configuration.GetSection("MongoDbSettings:ConnectionString").Value;
 
+            // 2. A lógica blindada do Entity Framework
             builder.Services.AddDbContext<CatalogDbContext>(options =>
             {
-                if (sqlConnectionString != null && sqlConnectionString.Contains("postgres", StringComparison.OrdinalIgnoreCase))
+                // Se a variável do Render não for nula/vazia, obrigatoriamente usa o Postgres
+                if (!string.IsNullOrEmpty(envDbUrl))
                 {
-                    options.UseNpgsql(sqlConnectionString);
+                    options.UseNpgsql(envDbUrl);
                 }
                 else
                 {
-                    options.UseSqlServer(sqlConnectionString);
+                    // Se estiver vazia, significa que estamos rodando no seu computador (Localhost)
+                    options.UseSqlServer(localDbUrl);
                 }
             });
 
@@ -91,7 +95,7 @@ namespace WebApplication1
             {
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
-                    ValidateIssuer = true, 
+                    ValidateIssuer = true,
                     ValidateAudience = true,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
