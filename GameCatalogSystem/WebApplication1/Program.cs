@@ -1,6 +1,14 @@
 using FluentValidation;
+using GameCatalogSystem.Application.Services;
+using GameCatalogSystem.Application.Services.Interfaces;
+using GameCatalogSystem.Domain.Repositories;
 using GameCatalogSystem.Infrastructure.Context;
+using GameCatalogSystem.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Microsoft.OpenApi.Models;
 
 namespace WebApplication1
 {
@@ -19,13 +27,64 @@ namespace WebApplication1
             builder.Services.AddScoped<GameCatalogSystem.Application.Services.Interfaces.IGameService, GameCatalogSystem.Application.Services.GameService>();
             builder.Services.AddValidatorsFromAssemblyContaining<GameCatalogSystem.Application.Validators.CreateGameValidator>();
             builder.Services.AddScoped<GameCatalogSystem.Application.Services.Interfaces.IAuditService, GameCatalogSystem.Infrastructure.Services.MongoAuditService>();
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<IAuthService, AuthService>();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            builder.Services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "GameCatalogSystem API", Version = "v1" });
+
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Description = "Insira o token JWT desta maneira: Bearer {seu token}",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer"
+                });
+
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            Array.Empty<string>()
+        }
+    });
+            });
 
             builder.Services.AddCors();
+
+            var jwtSettings = builder.Configuration.GetSection("JwtSettings");
+            var secretKey = jwtSettings["SecretKey"];
+
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true, 
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = jwtSettings["Issuer"],
+                    ValidAudience = jwtSettings["Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey!))
+                };
+            });
 
             var app = builder.Build();
 
@@ -34,10 +93,8 @@ namespace WebApplication1
                 var services = scope.ServiceProvider;
                 try
                 {
-                    // Pegamos a instância do nosso banco de dados
                     var context = services.GetRequiredService<GameCatalogSystem.Infrastructure.Context.CatalogDbContext>();
 
-                    // Verifica se já existe algum gênero cadastrado. Se NÃO existir, nós populamos!
                     if (!context.Genres.Any())
                     {
                         context.Genres.AddRange(
@@ -50,7 +107,6 @@ namespace WebApplication1
                             new GameCatalogSystem.Domain.Entities.Genre("MMORPG", "RPG massivo online para milhares de jogadores.")
                         );
 
-                        // Salva as alterações no banco
                         context.SaveChanges();
                         Console.WriteLine("Banco de dados populado com Gêneros padrão com sucesso!");
                     }
@@ -61,7 +117,6 @@ namespace WebApplication1
                 }
             }
 
-            // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
@@ -79,6 +134,8 @@ namespace WebApplication1
             .AllowAnyOrigin()
             .AllowAnyMethod()
             .AllowAnyHeader());
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
