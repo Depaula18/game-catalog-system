@@ -18,8 +18,23 @@ namespace WebApplication1
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            var sqlConnectionString = builder.Configuration.GetConnectionString("DefaultConnection") 
+                                     ?? Environment.GetEnvironmentVariable("DATABASE_URL");
+
+            var mongoConnectionString = builder.Configuration.GetSection("MongoDbSettings:ConnectionString").Value 
+                                       ?? Environment.GetEnvironmentVariable("MONGODB_URI");
+
             builder.Services.AddDbContext<CatalogDbContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            {
+                if (sqlConnectionString != null && sqlConnectionString.Contains("postgres", StringComparison.OrdinalIgnoreCase))
+                {
+                    options.UseNpgsql(sqlConnectionString);
+                }
+                else
+                {
+                    options.UseSqlServer(sqlConnectionString);
+                }
+            });
 
             builder.Services.AddScoped<GameCatalogSystem.Domain.Repositories.IGenreRepository, GameCatalogSystem.Infrastructure.Repositories.GenreRepository>();
             builder.Services.AddScoped<GameCatalogSystem.Application.Services.Interfaces.IGenreService, GameCatalogSystem.Application.Services.GenreService>();
