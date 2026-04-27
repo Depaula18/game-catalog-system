@@ -4,6 +4,7 @@ using GameCatalogSystem.Application.DTOs.Game;
 using GameCatalogSystem.Application.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GameCatalogSystem.Controllers;
 
@@ -27,6 +28,7 @@ public class GamesController : ControllerBase
         _environment = environment; 
     }
 
+    [Authorize]
     [HttpGet]
     public async Task<ActionResult<PagedResponseDTO<GameResponseDTO>>> GetAll(
     [FromQuery] int page = 1,
@@ -37,6 +39,7 @@ public class GamesController : ControllerBase
         return Ok(pagedResult);
     }
 
+    [Authorize]
     [HttpGet("{id:guid}")]
     public async Task<ActionResult<GameResponseDTO>> GetById(Guid id)
     {
@@ -45,6 +48,7 @@ public class GamesController : ControllerBase
         return Ok(game);
     }
 
+    [Authorize]
     [HttpPost]
     public async Task<ActionResult<GameResponseDTO>> Create([FromBody] CreateGameRequestDTO dto)
     {
@@ -59,6 +63,7 @@ public class GamesController : ControllerBase
         return CreatedAtAction(nameof(GetById), new { id = game.Id }, game);
     }
 
+    [Authorize]
     [HttpDelete("{id:guid}")]
     public async Task<IActionResult> Delete(Guid id)
     {
@@ -68,6 +73,7 @@ public class GamesController : ControllerBase
         return NoContent(); 
     }
 
+    [Authorize]
     [HttpPut("{id:guid}")]
     public async Task<ActionResult<GameResponseDTO>> Update(Guid id, [FromBody] UpdateGameRequestDTO dto)
     {
@@ -85,6 +91,7 @@ public class GamesController : ControllerBase
         return Ok(game);
     }
 
+    [Authorize]
     [HttpPost("{id:guid}/cover")]
     public async Task<IActionResult> UploadCover(Guid id, IFormFile file)
     {

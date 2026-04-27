@@ -160,3 +160,5 @@ C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\WebAppl
 C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\WebApplication1\bin\Debug\net8.0\Snappier.dll
 C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\WebApplication1\bin\Debug\net8.0\ZstdSharp.dll
 C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\WebApplication1\bin\Debug\net8.0\WebApplication1.staticwebassets.runtime.json
+C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\WebApplication1\bin\Debug\net8.0\BCrypt.Net-Next.dll
+C:\Users\depau\Desktop\Escritorio\bagui_do_trampo\crud\GameCatalogSystem\WebApplication1\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
