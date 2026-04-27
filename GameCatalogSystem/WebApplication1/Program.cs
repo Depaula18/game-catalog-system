@@ -161,10 +161,20 @@ namespace WebApplication1
 
             app.MapControllers();
 
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+
             using (var scope = app.Services.CreateScope())
             {
-                var dbContext = scope.ServiceProvider.GetRequiredService<CatalogDbContext>();
-                dbContext.Database.EnsureCreated();
+                var services = scope.ServiceProvider;
+                var context = services.GetRequiredService<CatalogDbContext>();
+
+                context.Database.EnsureCreated();
+                var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
+                if (!Directory.Exists(uploadPath))
+                {
+                    Directory.CreateDirectory(uploadPath);
+                    Console.WriteLine("---- Pasta de uploads criada com sucesso! ----");
+                }
             }
 
             app.Run();
