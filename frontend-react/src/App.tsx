@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import { Login } from './components/Login';
 import { GameList } from './components/GameList';
-import { LogOut, Plus } from 'lucide-react'; // ADICIONEI o Plus aqui
+import { LogOut, Plus } from 'lucide-react';
 import { GameModal } from './components/GameModal';
 
 interface Game {
@@ -22,15 +22,13 @@ function AppContent() {
   const [gameToEdit, setGameToEdit] = useState<Game | null>(null);
   const [refreshListTrigger, setRefreshListTrigger] = useState(0);
 
-  // Função para abrir o modal no modo EDIÇÃO
   const handleEditGame = (game: Game) => {
     setGameToEdit(game);
     setIsModalOpen(true);
   };
 
-  // Função para abrir o modal no modo CRIAÇÃO (Novo Jogo)
   const handleOpenNewGame = () => {
-    setGameToEdit(null); // Garante que o formulário abra vazio
+    setGameToEdit(null);
     setIsModalOpen(true);
   };
 
@@ -50,7 +48,7 @@ function AppContent() {
           </div>
           
           <div className="flex gap-4">
-            {/* O BOTÃO DE NOVO JOGO AQUI */}
+            {/* O BOTÃO DE NOVO JOGO */}
             <button 
               onClick={handleOpenNewGame}
               className="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white px-5 py-2.5 rounded-xl transition-all font-bold shadow-lg shadow-emerald-500/20 active:scale-95"
