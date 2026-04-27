@@ -18,11 +18,11 @@ namespace WebApplication1
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            var sqlConnectionString = builder.Configuration.GetConnectionString("DefaultConnection") 
-                                     ?? Environment.GetEnvironmentVariable("DATABASE_URL");
+            var sqlConnectionString = Environment.GetEnvironmentVariable("DATABASE_URL")
+                                     ?? builder.Configuration.GetConnectionString("DefaultConnection");
 
-            var mongoConnectionString = builder.Configuration.GetSection("MongoDbSettings:ConnectionString").Value 
-                                       ?? Environment.GetEnvironmentVariable("MONGODB_URI");
+            var mongoConnectionString = Environment.GetEnvironmentVariable("MONGODB_URI")
+                                       ?? builder.Configuration.GetSection("MongoDbSettings:ConnectionString").Value;
 
             builder.Services.AddDbContext<CatalogDbContext>(options =>
             {
