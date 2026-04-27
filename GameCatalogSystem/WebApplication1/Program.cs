@@ -157,6 +157,12 @@ namespace WebApplication1
 
             app.MapControllers();
 
+            using (var scope = app.Services.CreateScope())
+            {
+                var dbContext = scope.ServiceProvider.GetRequiredService<CatalogDbContext>();
+                dbContext.Database.EnsureCreated();
+            }
+
             app.Run();
         }
     }
