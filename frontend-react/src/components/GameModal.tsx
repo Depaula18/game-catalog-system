@@ -29,7 +29,7 @@ export function GameModal({ isOpen, onClose, onSuccess, gameToEdit }: GameModalP
 
   useEffect(() => {
     if (isOpen) {
-      api.get('/Genres').then(response => setGenres(response.data));
+      api.get('/api/Genres').then(response => setGenres(response.data));
     }
   }, [isOpen]);
 
