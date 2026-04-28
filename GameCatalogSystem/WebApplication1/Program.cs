@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using MongoDB.Driver;
 using System.Text;
 
 namespace WebApplication1
@@ -19,27 +20,26 @@ namespace WebApplication1
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // 1. Separa as variáveis para não dar confusão
             var envDbUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
             var localDbUrl = builder.Configuration.GetConnectionString("DefaultConnection");
 
             var envMongoUrl = Environment.GetEnvironmentVariable("MONGODB_URI");
             var localMongoUrl = builder.Configuration.GetSection("MongoDbSettings:ConnectionString").Value;
 
-            // 2. A lógica blindada do Entity Framework
             builder.Services.AddDbContext<CatalogDbContext>(options =>
             {
-                // Se a variável do Render não for nula/vazia, obrigatoriamente usa o Postgres
                 if (!string.IsNullOrEmpty(envDbUrl))
                 {
                     options.UseNpgsql(envDbUrl);
                 }
                 else
                 {
-                    // Se estiver vazia, significa que estamos rodando no seu computador (Localhost)
                     options.UseSqlServer(localDbUrl);
                 }
             });
+
+            var mongoConnectionString = envMongoUrl ?? localMongoUrl;
+            builder.Services.AddSingleton<IMongoClient>(new MongoClient(mongoConnectionString));
 
             builder.Services.AddScoped<GameCatalogSystem.Domain.Repositories.IGenreRepository, GameCatalogSystem.Infrastructure.Repositories.GenreRepository>();
             builder.Services.AddScoped<GameCatalogSystem.Application.Services.Interfaces.IGenreService, GameCatalogSystem.Application.Services.GenreService>();
