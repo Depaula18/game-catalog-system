@@ -16,7 +16,9 @@ public class MongoAuditService : IAuditService
 
     public MongoAuditService(IConfiguration configuration)
     {
-        var connectionString = configuration.GetSection("MongoDbSettings:ConnectionString").Value;
+        var connectionString = Environment.GetEnvironmentVariable("MONGODB_URI")
+                               ?? configuration.GetSection("MongoDbSettings:ConnectionString").Value;
+
         var databaseName = configuration.GetSection("MongoDbSettings:DatabaseName").Value;
 
         var client = new MongoClient(connectionString);
