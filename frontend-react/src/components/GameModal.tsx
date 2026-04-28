@@ -58,10 +58,10 @@ export function GameModal({ isOpen, onClose, onSuccess, gameToEdit }: GameModalP
       const dataToSend = { ...formData, price: Number(formData.price) };
 
       if (gameToEdit) {
-        await api.put(`/Games/${gameToEdit.id}`, dataToSend);
+        await api.put(`/api/Games/${gameToEdit.id}`, dataToSend);
         alert('Jogo atualizado com sucesso!');
       } else {
-        await api.post('/Games', dataToSend);
+        await api.post('/api/Games', dataToSend);
         alert('Jogo salvo com sucesso!');
       }
       
