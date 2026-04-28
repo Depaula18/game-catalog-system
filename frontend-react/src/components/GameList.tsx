@@ -35,7 +35,7 @@ export function GameList({ refreshTrigger, onEdit }: { refreshTrigger: number, o
     try {
       setLoading(true);
 
-      const response = await api.get('/Games', {
+      const response = await api.get('/api/Games', {
         params: {
           page: currentPage,
           pageSize: pageSize,
@@ -64,7 +64,7 @@ export function GameList({ refreshTrigger, onEdit }: { refreshTrigger: number, o
   const handleDelete = async (id: string) => {
     if (!window.confirm("Deseja realmente excluir este jogo?")) return;
     try {
-      await api.delete(`/Games/${id}`);
+      await api.delete(`/api/Games/${id}`);
       fetchGames(); 
       alert("Jogo removido!");
     } catch (error) {
@@ -80,7 +80,7 @@ export function GameList({ refreshTrigger, onEdit }: { refreshTrigger: number, o
 
     try {
 
-      await api.post(`/Games/${id}/cover`, formData, {
+      await api.post(`/api/Games/${id}/cover`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
       
