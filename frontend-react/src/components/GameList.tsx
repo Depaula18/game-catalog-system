@@ -120,22 +120,18 @@ export function GameList({ refreshTrigger, onEdit }: { refreshTrigger: number, o
             ) : (
               gameData?.data.map((game) => {
                 const isExpanded = expandedIds.includes(game.id);
-                const imageUrl = game.coverUrl ? `https://localhost:7277${game.coverUrl}` : null;
+                const imageUrl = game.coverUrl
+                  ? `https://game-catalog-api-xk1h.onrender.com${game.coverUrl}`
+                  : '/imagem-padrao.png';
 
                 return (
                   <div key={game.id} className="flex flex-col bg-gray-800 rounded-xl border border-gray-700 shadow-lg hover:border-emerald-500 transition-colors duration-300 overflow-hidden">
                     <div className="relative h-48 w-full bg-gray-900 group">
-                      {imageUrl ? (
-                        <img src={imageUrl} alt={game.title} className="w-full h-full object-cover opacity-80 group-hover:opacity-40 transition-opacity duration-300" />
-                      ) : (
-                        <div className="flex items-center justify-center w-full h-full text-gray-600 font-medium">
-                          Sem Capa
-                        </div>
-                      )}
+                      <img src={imageUrl} alt={game.title} className="w-full h-full object-cover opacity-80 group-hover:opacity-40 transition-opacity duration-300" />
 
                       <label className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer">
                         <span className="bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-bold py-2 px-4 rounded-lg shadow-lg">
-                          {imageUrl ? 'Trocar Capa' : 'Adicionar Capa'}
+                          {game.coverUrl ? 'Trocar Capa' : 'Adicionar Capa'}
                         </span>
                         <input
                           type="file"
