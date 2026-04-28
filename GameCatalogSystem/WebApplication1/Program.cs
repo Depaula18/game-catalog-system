@@ -1,14 +1,15 @@
 using FluentValidation;
 using GameCatalogSystem.Application.Services;
 using GameCatalogSystem.Application.Services.Interfaces;
+using GameCatalogSystem.Domain.Entities;
 using GameCatalogSystem.Domain.Repositories;
 using GameCatalogSystem.Infrastructure.Context;
 using GameCatalogSystem.Infrastructure.Repositories;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using System.Text;
 using Microsoft.OpenApi.Models;
+using System.Text;
 
 namespace WebApplication1
 {
@@ -169,12 +170,20 @@ namespace WebApplication1
                 var context = services.GetRequiredService<CatalogDbContext>();
 
                 context.Database.EnsureCreated();
+
                 var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
-                if (!Directory.Exists(uploadPath))
+                if (!Directory.Exists(uploadPath)) Directory.CreateDirectory(uploadPath);
+
+                if (!context.Users.Any(u => u.Email == "jeffe@bahia.com"))
                 {
-                    Directory.CreateDirectory(uploadPath);
-                    Console.WriteLine("---- Pasta de uploads criada com sucesso! ----");
+                    context.Users.Add(new User(
+                                "Jeffe",
+                                "jeffe@bahia.com",
+                                "123456",
+                                "Admin"
+                    ));
                 }
+                context.SaveChanges();
             }
 
             app.Run();
