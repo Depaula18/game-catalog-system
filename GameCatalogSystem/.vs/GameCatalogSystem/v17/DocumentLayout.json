@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\depau\\Desktop\\Escritorio\\bagui_do_trampo\\crud\\GameCatalogSystem\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{C65F1596-B305-42C2-9D8D-731040A2A744}|GameCatalogSystem.Infrastructure\\GameCatalogSystem.Infrastructure.csproj|c:\\users\\depau\\desktop\\escritorio\\bagui_do_trampo\\crud\\gamecatalogsystem\\gamecatalogsystem.infrastructure\\services\\mongoauditservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C65F1596-B305-42C2-9D8D-731040A2A744}|GameCatalogSystem.Infrastructure\\GameCatalogSystem.Infrastructure.csproj|solutionrelative:gamecatalogsystem.infrastructure\\services\\mongoauditservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5A768C76-F334-4A71-95B9-3924801B7B55}|WebApplication1\\GameCatalogSystem.csproj|c:\\users\\depau\\desktop\\escritorio\\bagui_do_trampo\\crud\\gamecatalogsystem\\webapplication1\\controllers\\gamescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5A768C76-F334-4A71-95B9-3924801B7B55}|WebApplication1\\GameCatalogSystem.csproj|solutionrelative:webapplication1\\controllers\\gamescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{5A768C76-F334-4A71-95B9-3924801B7B55}|WebApplication1\\GameCatalogSystem.csproj|c:\\users\\depau\\desktop\\escritorio\\bagui_do_trampo\\crud\\gamecatalogsystem\\webapplication1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5A768C76-F334-4A71-95B9-3924801B7B55}|WebApplication1\\GameCatalogSystem.csproj|solutionrelative:webapplication1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E1140C0C-C224-46CC-8646-467D06D60872}|GameCatalogSystem.Application\\GameCatalogSystem.Application.csproj|c:\\users\\depau\\desktop\\escritorio\\bagui_do_trampo\\crud\\gamecatalogsystem\\gamecatalogsystem.application\\services\\gameservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E1140C0C-C224-46CC-8646-467D06D60872}|GameCatalogSystem.Application\\GameCatalogSystem.Application.csproj|solutionrelative:gamecatalogsystem.application\\services\\gameservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5A768C76-F334-4A71-95B9-3924801B7B55}|WebApplication1\\GameCatalogSystem.csproj|c:\\users\\depau\\desktop\\escritorio\\bagui_do_trampo\\crud\\gamecatalogsystem\\webapplication1\\controllers\\gamescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5A768C76-F334-4A71-95B9-3924801B7B55}|WebApplication1\\GameCatalogSystem.csproj|solutionrelative:webapplication1\\controllers\\gamescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E1140C0C-C224-46CC-8646-467D06D60872}|GameCatalogSystem.Application\\GameCatalogSystem.Application.csproj|c:\\users\\depau\\desktop\\escritorio\\bagui_do_trampo\\crud\\gamecatalogsystem\\gamecatalogsystem.application\\services\\interfaces\\igameservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -30,17 +34,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\depau\\Desktop\\Escritorio\\bagui_do_trampo\\crud\\GameCatalogSystem\\WebApplication1\\Program.cs",
               "RelativeDocumentMoniker": "WebApplication1\\Program.cs",
               "ToolTip": "C:\\Users\\depau\\Desktop\\Escritorio\\bagui_do_trampo\\crud\\GameCatalogSystem\\WebApplication1\\Program.cs",
               "RelativeToolTip": "WebApplication1\\Program.cs",
-              "ViewState": "AgIAAKgAAAAAAAAAAAAUwLsAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-23T17:47:47.254Z",
               "IsPinned": true,
@@ -48,20 +52,34 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "GamesController.cs",
               "DocumentMoniker": "C:\\Users\\depau\\Desktop\\Escritorio\\bagui_do_trampo\\crud\\GameCatalogSystem\\WebApplication1\\Controllers\\GamesController.cs",
               "RelativeDocumentMoniker": "WebApplication1\\Controllers\\GamesController.cs",
               "ToolTip": "C:\\Users\\depau\\Desktop\\Escritorio\\bagui_do_trampo\\crud\\GameCatalogSystem\\WebApplication1\\Controllers\\GamesController.cs",
               "RelativeToolTip": "WebApplication1\\Controllers\\GamesController.cs",
-              "ViewState": "AgIAACwAAAAAAAAAAAAwwD4AAABMAAAAAAAAAA==",
+              "ViewState": "AgIAACwAAAAAAAAAAAAwwDwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-23T19:57:55.46Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
+              "Title": "MongoAuditService.cs",
+              "DocumentMoniker": "C:\\Users\\depau\\Desktop\\Escritorio\\bagui_do_trampo\\crud\\GameCatalogSystem\\GameCatalogSystem.Infrastructure\\Services\\MongoAuditService.cs",
+              "RelativeDocumentMoniker": "GameCatalogSystem.Infrastructure\\Services\\MongoAuditService.cs",
+              "ToolTip": "C:\\Users\\depau\\Desktop\\Escritorio\\bagui_do_trampo\\crud\\GameCatalogSystem\\GameCatalogSystem.Infrastructure\\Services\\MongoAuditService.cs",
+              "RelativeToolTip": "GameCatalogSystem.Infrastructure\\Services\\MongoAuditService.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABcAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-28T14:45:19.597Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "IGameService.cs",
               "DocumentMoniker": "C:\\Users\\depau\\Desktop\\Escritorio\\bagui_do_trampo\\crud\\GameCatalogSystem\\GameCatalogSystem.Application\\Services\\Interfaces\\IGameService.cs",
               "RelativeDocumentMoniker": "GameCatalogSystem.Application\\Services\\Interfaces\\IGameService.cs",
@@ -73,7 +91,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "GameService.cs",
               "DocumentMoniker": "C:\\Users\\depau\\Desktop\\Escritorio\\bagui_do_trampo\\crud\\GameCatalogSystem\\GameCatalogSystem.Application\\Services\\GameService.cs",
               "RelativeDocumentMoniker": "GameCatalogSystem.Application\\Services\\GameService.cs",
@@ -81,12 +99,11 @@
               "RelativeToolTip": "GameCatalogSystem.Application\\Services\\GameService.cs",
               "ViewState": "AgIAAD4AAAAAAAAAAAAIwFUAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-28T13:36:49.733Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-28T13:36:49.733Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\depau\\Desktop\\Escritorio\\bagui_do_trampo\\crud\\GameCatalogSystem\\WebApplication1\\appsettings.json",
               "RelativeDocumentMoniker": "WebApplication1\\appsettings.json",
