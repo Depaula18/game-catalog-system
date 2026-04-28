@@ -21,6 +21,17 @@ interface PagedResponse {
   data: Game[];
 }
 
+const COVER_BASE_URL = 'https://game-catalog-api-xk1h.onrender.com';
+const COVER_FALLBACK_URL = 'https://placehold.co/600x400/0f172a/94a3b8?text=Sem+Capa';
+
+const buildCoverUrl = (coverUrl?: string) => {
+  if (!coverUrl) return COVER_FALLBACK_URL;
+  if (/^https?:\/\//i.test(coverUrl)) return coverUrl;
+
+  const normalizedPath = `/${coverUrl.replace(/^\/+/, '')}`;
+  return `${COVER_BASE_URL}${normalizedPath}`;
+};
+
 export function GameList({ refreshTrigger, onEdit }: { refreshTrigger: number, onEdit: (game: Game) => void }) {
   const [gameData, setGameData] = useState<PagedResponse | null>(null);
   const [loading, setLoading] = useState(true);
@@ -120,14 +131,19 @@ export function GameList({ refreshTrigger, onEdit }: { refreshTrigger: number, o
             ) : (
               gameData?.data.map((game) => {
                 const isExpanded = expandedIds.includes(game.id);
-                const imageUrl = game.coverUrl
-                  ? `https://game-catalog-api-xk1h.onrender.com${game.coverUrl}`
-                  : '/imagem-padrao.png';
+                const imageUrl = buildCoverUrl(game.coverUrl);
 
                 return (
                   <div key={game.id} className="flex flex-col bg-gray-800 rounded-xl border border-gray-700 shadow-lg hover:border-emerald-500 transition-colors duration-300 overflow-hidden">
                     <div className="relative h-48 w-full bg-gray-900 group">
-                      <img src={imageUrl} alt={game.title} className="w-full h-full object-cover opacity-80 group-hover:opacity-40 transition-opacity duration-300" />
+                      <img
+                        src={imageUrl}
+                        alt={game.title}
+                        className="w-full h-full object-cover opacity-80 group-hover:opacity-40 transition-opacity duration-300"
+                        onError={(e) => {
+                          e.currentTarget.src = COVER_FALLBACK_URL;
+                        }}
+                      />
 
                       <label className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer">
                         <span className="bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-bold py-2 px-4 rounded-lg shadow-lg">
