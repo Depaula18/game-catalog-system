@@ -62,12 +62,14 @@ public class GameService : IGameService
     public async Task<GameResponseDTO> CreateAsync(CreateGameRequestDTO dto)
     {
         var genre = await _genreRepository.GetByIdAsync(dto.GenreId);
-        if(genre == null)
+        if (genre == null)
         {
             throw new Exception("Gênero inválido. Não é possível cadastrar o jogo.");
         }
 
-        var game = new Game(dto.Title, dto.Description, dto.Price, dto.ReleaseDate, dto.GenreId);
+        var dataLancamentoUtc = DateTime.SpecifyKind(dto.ReleaseDate, DateTimeKind.Utc);
+
+        var game = new Game(dto.Title, dto.Description, dto.Price, dataLancamentoUtc, dto.GenreId);
 
         await _gameRepository.AddAsync(game);
         await _gameRepository.SaveChangesAsync();
@@ -81,7 +83,7 @@ public class GameService : IGameService
             Title = game.Title,
             Description = game.Description,
             Price = game.Price,
-            ReleaseDate = game.ReleaseDate,
+            ReleaseDate = game.ReleaseDate, 
             GenreName = genre.Name
         };
     }
