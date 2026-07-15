@@ -85,7 +85,8 @@ namespace WebApplication1
             builder.Services.AddCors();
 
             var jwtSettings = builder.Configuration.GetSection("JwtSettings");
-            var secretKey = jwtSettings["SecretKey"];
+            var secretKey = Environment.GetEnvironmentVariable("JWT_SECRET_KEY")
+                            ?? jwtSettings["SecretKey"];
 
             builder.Services.AddAuthentication(options =>
             {
